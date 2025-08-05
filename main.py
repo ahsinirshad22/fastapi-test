@@ -29,7 +29,7 @@ def login_user(login: LoginRequest):
         if user["email"] == login.email and user["password"] == login.password:
             return {"status" : True, "message": "Login successful"}
     
-    raise JSONResponse(
+    return JSONResponse(
         status_code=status.HTTP_401_UNAUTHORIZED,
         content={
             "status": False,
