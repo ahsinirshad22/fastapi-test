@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, status
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -28,4 +29,10 @@ def login_user(login: LoginRequest):
         if user["email"] == login.email and user["password"] == login.password:
             return {"status" : True, "message": "Login successful"}
     
-    raise HTTPException(status_code=401, detail={"status" : False, "message": "Invalid email or password"})
+    raise JSONResponse(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        content={
+            "status": False,
+            "message": "Invalid email or password"
+        }
+    )
