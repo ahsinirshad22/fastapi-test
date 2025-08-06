@@ -1,6 +1,9 @@
 # Python version
 FROM python:3.13
 
+# upgrade pip
+RUN uv pip install --upgrade pip
+
 # Install uv
 RUN pip install --no-cache-dir --upgrade uv
 
