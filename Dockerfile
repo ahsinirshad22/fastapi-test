@@ -11,7 +11,7 @@ WORKDIR /app
 COPY pyproject.toml ./
 
 # Install dependencies using uv
-RUN uv sync --system
+RUN uv pip install -r pyproject.toml
 
 # Copy the rest of your app
 COPY ./app ./app
