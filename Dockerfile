@@ -3,11 +3,10 @@ FROM python:3.13
 # Install uv
 RUN pip install --no-cache-dir --upgrade uv
 
-WORKDIR /app
-
 # Copy the project files
-COPY ./pyproject.toml ./pyproject.toml
-COPY ./app ./app
+COPY . /code
+
+WORKDIR /code
 
 # Install dependencies (assuming pyproject.toml contains them)
 RUN uv sync --frozen --no-cache
