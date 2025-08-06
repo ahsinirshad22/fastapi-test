@@ -4,7 +4,7 @@ FROM python:3.13
 # upgrade pip
 RUN pip install --upgrade pip
 
-WORKDIR /app
+WORKDIR /code
 
 # Copy the project files
 COPY ./pyproject.toml ./pyproject.toml
