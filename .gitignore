@@ -1,2 +1,54 @@
-/__pycache__
-.venv-fastapi
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Virtual environment (uv or venv)
+.venv/
+env/
+venv/
+
+# VSCode or IDEs
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Unit test / coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+pytest_cache/
+.cache/
+
+# Docker
+*.tar
+*.img
+*.bak
+.dockerignore
+
+# System
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Node (if using frontend inside project)
+node_modules/
+npm-debug.log*
+
+# dotenv
+.env
+.env.*
+
+# Pydantic compiled cache
+*.msgpack
