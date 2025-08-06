@@ -12,4 +12,4 @@ COPY ./app ./app
 
 RUN pip install --no-cache-dir pyproject.toml
 
-CMD ["fastapi", "run", "main.py", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
