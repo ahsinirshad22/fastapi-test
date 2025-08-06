@@ -10,7 +10,7 @@ COPY ./pyproject.toml ./pyproject.toml
 COPY ./app ./app
 
 # Install dependencies (assuming pyproject.toml contains them)
-RUN uv pip install --system
+RUN uv pip install --system .
 
 # Start FastAPI with Uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
