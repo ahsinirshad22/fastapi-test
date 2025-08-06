@@ -1,29 +1,23 @@
+# Use official Python 3.13 image
 FROM python:3.13
 
-# Install uv
+# Install uv (fast dependency manager and runner)
 RUN pip install --no-cache-dir uv
 
-WORKDIR /code
+# Set working directory
+WORKDIR /app
 
-# Copy the uv config and source files
-COPY ./pyproject.toml /code/pyproject.toml
+# Copy only dependency file first for caching
+COPY pyproject.toml ./
 
-COPY ./main.py /code/
+# Install dependencies using uv
+RUN uv pip install -r pyproject.toml
 
-COPY ./requirements.txt /code/requirements.txt
+# Copy the rest of your app
+COPY ./app ./app
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Expose port 80
+EXPOSE 80
 
-COPY ./main.py /code/
-
-
-CMD ["fastapi", "run", "main.py", "--port", "80"]
-
-
-# Install dependencies using uv.toml
-RUN uv venv && \
-    . .venv/bin/activate && \
-    uv pip install -r uv.toml
-
-# Use uv to run the FastAPI app (main.py with app instance)
-CMD ["uv", "icorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+# Run the FastAPI app using uv's built-in uvicorn launcher
+CMD ["uv", "icorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
