@@ -2,10 +2,12 @@
 FROM python:3.13
 
 # Install uv (fast dependency manager and runner)
-RUN pip install --no-cache-dir uv
+RUN pip install --no-cache-dir --upgrade uv
 
 # Set working directory
 WORKDIR /app
+
+RUN uv sync
 
 # Copy only dependency file first for caching
 COPY pyproject.toml ./
