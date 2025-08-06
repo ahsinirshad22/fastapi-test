@@ -7,13 +7,11 @@ RUN pip install --no-cache-dir --upgrade uv
 # Set working directory
 WORKDIR /app
 
-RUN uv sync
 
 # Copy only dependency file first for caching
 COPY pyproject.toml ./
 
-# Install dependencies using uv
-RUN uv pip install -r pyproject.toml
+RUN uv sync
 
 # Copy the rest of your app
 COPY ./app ./app
